@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
+<?xml version="1.0" encoding="utf-8"?><!--
  ~ Copyright (c) WSO2 Inc. (http://www.wso2.org) All Rights Reserved.
  ~
  ~ Licensed under the Apache License, Version 2.0 (the "License");
@@ -13,16 +12,12 @@
  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  ~ See the License for the specific language governing permissions and
  ~ limitations under the License.
--->
-
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
-
+--><project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <parent>
         <groupId>org.jaggeryjs</groupId>
         <artifactId>jaggery-parent</artifactId>
         <version>0.12.0</version>
     </parent>
-
     <groupId>org.jaggeryjs.modules</groupId>
     <artifactId>jaggery-modules</artifactId>
     <version>1.5.7-SNAPSHOT</version>
@@ -31,14 +26,12 @@
     <name>Jaggery Modules</name>
     <url>https://github.com/wso2/jaggery-modules</url>
     <description>Jaggery Modules</description>
-
     <scm>
         <url>https://github.com/wso2/jaggery-extensions.git</url>
         <developerConnection>scm:git:https://github.com/wso2/jaggery-extensions.git</developerConnection>
         <connection>scm:git:https://github.com/wso2/jaggery-extensions.git</connection>
         <tag>HEAD</tag>
     </scm>
-
     <modules>
         <module>carbon</module>
         <module>markdown</module>
@@ -54,7 +47,6 @@
         <module>caramel</module>
         <module>jaggery-test</module>
     </modules>
-
     <properties>
         <project.scm.id>github-scm</project.scm.id>
         <maven-src-plugin.version>1.7.2</maven-src-plugin.version>
@@ -62,43 +54,32 @@
         <maven-resources-plugin.version>2.5</maven-resources-plugin.version>
         <carbon.p2.plugin.version>1.5.4</carbon.p2.plugin.version>
         <maven-wagon-ssh.version>2.1</maven-wagon-ssh.version>
-
         <commons.logging.version>1.1.1</commons.logging.version>
         <commons.logging.imp.pkg.version>1.1.1</commons.logging.imp.pkg.version>
-
         <commons.lang.version>2.6</commons.lang.version>
-
         <carbon.kernel.version>4.4.7</carbon.kernel.version>
         <carbon.kernel.imp.pkg.version>[4.4.0, 5.0.0)</carbon.kernel.imp.pkg.version>
-
         <jaggery.version>0.12.6</jaggery.version>
         <jaggery.imp.pkg.version>[0.10.0, 1.0.0)</jaggery.imp.pkg.version>
-
         <carbon.commons.version>4.3.2</carbon.commons.version>
-
         <rhino.version>1.7.0.R4.wso2v1</rhino.version>
         <rhino.imp.pkg.version>1.7.0.R4.wso2v1</rhino.imp.pkg.version>
-
         <mail.version>1.4</mail.version>
         <activation.version>1.1</activation.version>
         <geronimo-servlet_3.0_spec.version>1.0</geronimo-servlet_3.0_spec.version>
-
         <json.version>20090211</json.version>
         <junit.version>3.8.2</junit.version>
         <scribe.version>1.3.1</scribe.version>
-
         <opensaml2.wso2.version>2.4.1.wso2v1</opensaml2.wso2.version>
         <commons-codec.osgi.version>1.4.0.wso2v1</commons-codec.osgi.version>
         <sso.hostobjects.version>1.0.1</sso.hostobjects.version>
         <xmlsec.version>1.5.8</xmlsec.version>
         <imp.pkg.version.xmlsec>[1.4.2, 2.0.0)</imp.pkg.version.xmlsec>
-
         <axis2.osgi.version>1.6.1.wso2v12</axis2.osgi.version>
         <axiom.osgi.version>1.2.11.wso2v6</axiom.osgi.version>
         <xmlschema.osgi.version>1.4.7.wso2v3</xmlschema.osgi.version>
         <rampart.osgi.version>1.6.1.wso2v16</rampart.osgi.version>
         <wss4j.osgi.version>1.5.11.wso2v11</wss4j.osgi.version>
-
         <!-- jaggery modules -->
         <ws.module.version>1.5.7-SNAPSHOT</ws.module.version>
         <email.module.version>1.5.7-SNAPSHOT</email.module.version>
@@ -109,7 +90,6 @@
         <handlebars.version>1.5.7-SNAPSHOT</handlebars.version>
         <markdown.version>1.5.7-SNAPSHOT</markdown.version>
     </properties>
-
     <build>
         <extensions>
             <extension>
@@ -151,6 +131,63 @@
                     <artifactId>maven-resources-plugin</artifactId>
                     <version>${maven-resources-plugin.version}</version>
                 </plugin>
+                <plugin>
+                    <groupId>org.jacoco</groupId>
+                    <artifactId>jacoco-maven-plugin</artifactId>
+                    <version>0.8.0</version>
+                    <executions>
+                        <execution>
+                            <id>default-prepare-agent-by-coverage-enforcer</id>
+                            <goals>
+                                <goal>prepare-agent</goal>
+                            </goals>
+                            <configuration>
+                                <propertyName>argLine</propertyName>
+                                <destFile>${project.build.directory}/jacoco.exec</destFile>
+                            </configuration>
+                        </execution>
+                        <execution>
+                            <id>default-report-by-coverage-enforcer</id>
+                            <goals>
+                                <goal>report</goal>
+                            </goals>
+                            <configuration>
+                                <dataFile>${project.build.directory}/jacoco.exec</dataFile>
+                            </configuration>
+                        </execution>
+                        <execution>
+                            <id>default-check-by-coverage-enforcer</id>
+                            <goals>
+                                <goal>check</goal>
+                            </goals>
+                            <configuration>
+                                <dataFile>${project.build.directory}/jacoco.exec</dataFile>
+                                <rules>
+                                    <!-- implementation is needed only for Maven 2 -->
+                                    <rule implementation="org.jacoco.maven.RuleConfiguration">
+                                        <element>BUNDLE</element>
+                                        <limits>
+                                            <!-- implementation is needed only for Maven 2 -->
+                                            <limit implementation="org.jacoco.report.check.Limit">
+                                                <counter>LINE</counter>
+                                                <value>COVEREDRATIO</value>
+                                                <minimum/>
+                                            </limit>
+                                        </limits>
+                                    </rule>
+                                </rules>
+                            </configuration>
+                        </execution>
+                    </executions>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-surefire-plugin</artifactId>
+                    <version>2.21.0</version>
+                    <configuration>
+                        <argLine>${argLine}</argLine>
+                    </configuration>
+                </plugin>
             </plugins>
         </pluginManagement>
         <plugins>
@@ -168,7 +205,6 @@
             </plugin>
         </plugins>
     </build>
-
     <repositories>
         <repository>
             <id>shibboleth.internet2.edu</id>
@@ -221,7 +257,6 @@
             </releases>
         </repository>
     </repositories>
-
     <pluginRepositories>
         <pluginRepository>
             <id>wso2.releases</id>
@@ -256,7 +291,6 @@
             </releases>
         </pluginRepository>
     </pluginRepositories>
-
     <dependencyManagement>
         <dependencies>
             <dependency>
@@ -386,5 +420,4 @@
             </dependency>
         </dependencies>
     </dependencyManagement>
-
 </project>
